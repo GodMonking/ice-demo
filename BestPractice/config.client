@@ -1,0 +1,2 @@
+Ice.Default.Locator=MKIceGrid/Locator:tcp -p 4061
+queryPerson.Proxy=Demo.CPersonI

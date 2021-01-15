@@ -1,0 +1,28 @@
+<icegrid>
+	<application name="queryPersonApp">
+		<service-template id="ServiceTemplate">
+			<parameter name="name" />
+			<service name="${name}" entry="queryPersonI:create">
+				<adapter name="${service}" endpoints="tcp" replica-group="queryPersonGroup" />
+				<property name="${service}.Identity" value="${server}-${service}"/>
+				<property name="Ice.Trace.Network" value="1" />
+				<property name="Ice.PrintStackTraces" value="1"/>
+			</service>
+		</service-template>
+		<server-template id="ServerTemplate">
+			<parameter name="id" />
+			<icebox id="${id}" exe="/usr/bin/icebox++11" activation="on-demand">
+				<env>LD_LIBRARY_PATH=/data/node2/BestPractice:$LD_LIBRARY_PATH</env>
+				<property name="Ice.Admin.Endpoints" value="tcp" />
+				<service-instance template="ServiceTemplate" name="queryPerson" />
+			</icebox>
+		</server-template>
+		<replica-group id="queryPersonGroup">
+			<load-balancing type="round-robin" n-replicas="1" />
+			<object identity="Demo.CPersonI" type="::Demo::CPersonI" />
+		</replica-group>
+		<node name="node2">
+			<server-instance template="ServerTemplate" id="queryPersonSrv" />
+		</node>
+	</application>
+</icegrid>
