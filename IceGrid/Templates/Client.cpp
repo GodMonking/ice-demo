@@ -11,8 +11,8 @@ main(int argc, char* argv[])
 {
     try
     {
-        Ice::CommunicatorHolder ich(argc, argv);
-        auto base = ich->stringToProxy("HelloImp:default -p 20000");
+        Ice::CommunicatorHolder ich(argc, argv, "config.client");
+        auto base = ich->stringToProxy("HelloImp@IceBoxServerv2.Liming.Liming");
         auto hello = Ice::checkedCast<HelloPrx>(base);
         if(!hello)
         {

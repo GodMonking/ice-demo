@@ -1,0 +1,22 @@
+<icegrid>
+	<application name="IceBoxDemov2">
+		<service-template id="ServiceTemplate">
+			<parameter name="name" />
+			<service name="${name}" entry="HelloI:create">
+				<adapter name="${service}" endpoints="tcp"/>
+				<property name="${service}.Identity" value="${server}-${service}"/>
+				<property name="Ice.Trace.Network" value="1" />
+				<property name="Ice.PrintStackTraces" value="1"/>
+			</service>
+		</service-template>
+		<node name="node1">
+			<icebox id="IceBoxServerv2" exe="/usr/bin/icebox++11" activation="on-demand" pwd="/opt/ice/Hello">
+				<env>LD_LIBRARY_PATH=/data/ice-demo/IceGrid/lib:$LD_LIBRARY_PATH</env>
+				<property name="Ice.Admin.Endpoints" value="tcp" />
+				<service-instance template="ServiceTemplate" name="Liming"/>
+				<service-instance template="ServiceTemplate" name="Jane"/>
+				<service-instance template="ServiceTemplate" name="Machel"/>
+			</icebox>
+		</node>
+	</application>
+</icegrid>

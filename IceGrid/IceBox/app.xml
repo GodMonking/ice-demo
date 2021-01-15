@@ -1,0 +1,16 @@
+<icegrid>
+	<application name="IceBoxDemo">
+		<node name="node1">
+			<icebox id="IceBoxServer" exe="/usr/bin/icebox++11" activation="always" pwd="/opt/ice/Hello">
+                <env>LD_LIBRARY_PATH=/opt/ice-demo/IceGrid/lib:$LD_LIBRARY_PATH</env>
+				<property name="Ice.Admin.Endpoints" value="tcp" />
+				<service name="Hello" entry="HelloI:create">
+					<adapter name="${service}" endpoints="tcp"/>
+					<property name="Ice.Trace.Network" value="1" />
+					<property name="Ice.Trace.ThreadPool" value="1"/>
+					<property name="Ice.PrintStackTraces" value="1"/>
+				</service>
+			</icebox>
+		</node>
+	</application>
+</icegrid>

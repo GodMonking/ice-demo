@@ -1,6 +1,6 @@
 #include <HelloI.h>
 
-string
+string 
 HelloI::HelloWorld(const Ice::Current&)
 {
 	string s = "Hello world!";

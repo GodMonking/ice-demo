@@ -1,0 +1,31 @@
+<icegrid>
+	<application name="IceBoxDemov3">
+		<service-template id="ServiceTemplate">
+			<parameter name="name" />
+			<service name="${name}" entry="HelloI:create">
+				<adapter name="${service}" endpoints="tcp" replica-group="HelloGroup" />
+				<property name="${service}.Identity" value="${server}-${service}"/>
+				<property name="Ice.Trace.Network" value="1" />
+				<property name="Ice.PrintStackTraces" value="1"/>
+			</service>
+		</service-template>
+		<server-template id="ServerTemplate">
+			<parameter name="icebox_id" />
+			<icebox id="${icebox_id}" exe="/usr/bin/icebox++11" activation="on-demand">
+				<env>LD_LIBRARY_PATH=/opt/ice/Hello-v3/lib:$LD_LIBRARY_PATH</env>
+				<property name="Ice.Admin.Endpoints" value="tcp" />
+				<service-instance template="ServiceTemplate" name="Liming" />
+			</icebox>
+		</server-template>
+		<replica-group id="HelloGroup">
+			<load-balancing type="round-robin" n-replicas="1" />
+			<object identity="HelloImp" type="::Demo::Hello" />
+		</replica-group>
+		<node name="node1">
+			<server-instance template="ServerTemplate" icebox_id="IceBoxServerv4-1" />
+		</node>
+		<node name="node1">
+			<server-instance template="ServerTemplate" icebox_id="IceBoxServerv4-2" />
+		</node>
+	</application>
+</icegrid>
