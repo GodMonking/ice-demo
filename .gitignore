@@ -1,0 +1,7 @@
+#compile generate file
+*.[oa]
+*.so
+
+IceGrid/node1
+IceGrid/registry
+

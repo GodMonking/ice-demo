@@ -1,0 +1,6 @@
+Hello.Endpoints=tcp
+Hello.AdapterId=HelloAdaterAAA
+#IceBox.LoadOrder=queryServer
+#IceBox.UseSharedCommunicator.queryServer=1
+#Ice.Trace.Network=1
+#Ice.Default.Locator=MKIceGrid/Locator:tcp -p 4066

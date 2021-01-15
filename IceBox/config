@@ -1,0 +1,33 @@
+IceBox.InstanceName=Mongking 1
+IceBox.InheritProperties=1
+IceBox.PrintServicesReady=MkIceBox 1
+IceBox.ServiceManager.Endpoints=tcp -p 9999
+ 
+#performance properties
+IceBox.ThreadPool.Server.Size=4
+IceBox.ThreadPool.Server.SizeMax=100
+IceBox.ThreadPool.Server.SizeWarn=40
+IceBox.ThreadPool.Client.Size=4
+IceBox.ThreadPool.Client.SizeMax=100
+IceBox.ThreadPool.Client.SizeWarn=40
+ 
+#for system stronger
+Ice.ACM.Client=300
+Ice.ACM.Server=300
+ 
+#log and trace
+#Ice.LogFile=iceserver.log
+Ice.PrintStackTraces=1
+Ice.Trace.Network=2 
+Ice.Trace.ThreadPool=1 
+Ice.Warn.Connections=1 
+Ice.Warn.Dispatch=1
+Ice.Warn.Endpoints=1
+ 
+#IceBox.Service.Hello=HelloI:create --Ice.Config='/data/ice_test/IceBox/config_Hello'
+IceBox.Service.Hello=HelloI:create
+Hello.Endpoints=tcp -p 20000
+ 
+#IceBox.LoadOrder=queryServer
+#IceBox.UseSharedCommunicator.queryServer=1
+#Ice.Default.Locator=MKIceGrid/Locator:tcp -p 4066
