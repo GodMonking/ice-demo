@@ -1,10 +1,11 @@
 <icegrid>
 	<application name="Ripper">
 		<node name="node1">
-			<server id="PrinterServer" exe="/opt/ice/Printer/bin/server" activation="on-demand">
-				<adapter name="SimplePrinterAdapter" id="SimplePrinterAdapter" endpoints="tcp -p 10000"/>
+			<server id="PrinterServer" exe="/data/ice-demo/IceGrid/Printer/server" activation="on-demand">
+				<adapter name="SimplePrinterAdapter" id="SimplePrinterAdapter" endpoints="tcp"/>
                 <property name="Ice.Trace.Network" value="1"/>
                 <property name="Ice.PrintStackTraces" value="1"/>
+                <property name="Ice.Admin.Endpoints" value="tcp" />
 			</server>
 		</node>
 	</application>
