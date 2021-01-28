@@ -1,7 +1,7 @@
 CPP=c++
 CXXFLAGS=-DICE_CPP11_MAPPING -std=c++11 -g
 INC= -I.
-LINK_LIB= -lIce++11 -lpthread
+LINK_LIB= -lIce++11 -lpthread -lIceGrid++11 -lGlacier2++11
 
 all: server client
 

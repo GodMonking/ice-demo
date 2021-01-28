@@ -1,0 +1,24 @@
+<icegrid>
+	<application name="Printer">
+		<replica-group id="PrinterAdapters">
+			<load-balancing type="random" n-replicas="0"/>
+			<!-- 此处还可以添加知名对象的定义（Well-Know Object） -->
+			<object identity="SimplePrinter" type="::Demo::Hello" />
+		</replica-group>
+		<server-template id="PrinterServerTemplate">
+			<parameter name="index"/>
+			<server id="PrinterServer${index}" exe="/data/ice-demo/IceGrid/Printer/server" activation="on-demand">
+				<adapter name="SimplePrinterAdapter" endpoints="tcp" replica-group="PrinterAdapters"/>
+                <property name="Ice.Trace.Network" value="1"/>
+                <property name="Ice.PrintStackTraces" value="1"/>
+                <property name="Ice.Admin.Endpoints" value="tcp" />
+			</server>			
+		</server-template>
+		<node name="node1">
+			<server-instance template="PrinterServerTemplate" index="3"/>
+		</node>
+		<node name="node2">
+			<server-instance template="PrinterServerTemplate" index="4"/>
+		</node>
+	</application>
+</icegrid>

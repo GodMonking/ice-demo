@@ -18,13 +18,13 @@
 			</icebox>
 		</server-template>
 		<replica-group id="HelloGroup">
-			<load-balancing type="round-robin" n-replicas="1" />
+			<load-balancing type="adaptive" load-sample="5" n-replicas="1" />
 			<object identity="HelloImp" type="::Demo::Hello" />
 		</replica-group>
 		<node name="node1">
 			<server-instance template="ServerTemplate" icebox_id="IceBoxServerv4-1" />
 		</node>
-		<node name="node1">
+		<node name="node2">
 			<server-instance template="ServerTemplate" icebox_id="IceBoxServerv4-2" />
 		</node>
 	</application>
